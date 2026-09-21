@@ -1,4 +1,4 @@
-// frontend/src/GoogleLogin.js
+
 import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
@@ -17,7 +17,6 @@ const GoogleLogin = () => {
 
     const FLASK_BACKEND_URL = process.env.REACT_APP_FLASK_BACKEND_URL;
 
-    // On mount, check if token exists in localStorage, auto-login if so
     useEffect(() => {
         const storedToken = localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY);
         const storedUser = localStorage.getItem(LOCAL_STORAGE_USER_KEY);
@@ -32,7 +31,6 @@ const GoogleLogin = () => {
                 });
                 navigate('/dashboard');
             } catch {
-                // Invalid JSON, clear stored data
                 localStorage.removeItem(LOCAL_STORAGE_TOKEN_KEY);
                 localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
             }
@@ -56,7 +54,6 @@ const GoogleLogin = () => {
                         name: decodedToken.name || decodedToken.email.split('@')[0],
                         picture: decodedToken.picture || null,
                     };
-                    // Save token and user to localStorage
                     
                     localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, data.access_token);
                     localStorage.setItem(LOCAL_STORAGE_USER_KEY, JSON.stringify(userObj));

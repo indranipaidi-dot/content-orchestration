@@ -265,61 +265,66 @@ main {
     border: 1px solid #6bff93;
 }
 
-.search-result-display {
-    margin-top: 1.5rem; /* Reduced margin */
+/* NEW: Styles for displaying multiple search results */
+.search-results-list {
+    margin-top: 1.5rem;
     padding: 15px;
-    background-color: #3a3a3a; /* Darker background for result display */
+    background-color: #3a3a3a;
     border-radius: 8px;
-    border: 1px dashed #777; /* Dashed border for separation */
+    border: 1px dashed #777;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+    text-align: left; /* Align content inside results to left */
 }
 
-.search-result-display h4 {
+.search-results-list h4 {
     color: #fff;
-    margin-bottom: 1rem; /* Reduced margin */
-    font-size: 1.25rem; /* Larger heading for results */
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    text-align: center; /* Center the "Found Files" heading */
 }
 
-/* Styles for different media types */
-.searched-image {
+.search-result-item {
+    background-color: #2d2d2d; /* Slightly different background for individual items */
+    border: 1px solid #4a4a4a;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 10px; /* Space between items */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content within each item */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.search-result-item:last-child {
+    margin-bottom: 0; /* No margin after the last item */
+}
+
+.search-result-item h5 {
+    color: #c9c9c9;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+/* Styles for different media types (renamed for general item preview) */
+.searched-item-preview {
     max-width: 100%;
-    max-height: 200px; /* Constrain max height for images */
+    max-height: 200px; /* Constrain max height for images/videos/audios */
     width: auto; /* Allow width to adjust based on height */
-    object-fit: contain; /* Ensures the image is fully visible without cropping */
+    object-fit: contain; /* Ensures the content is fully visible without cropping */
     border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* More prominent shadow for images */
-    display: block;
-    margin: 0.5rem auto; /* Reduced margin */
-}
-
-.searched-video,
-.searched-audio {
-    max-width: 100%;
-    max-height: 150px; /* Constrain max height for video/audio players */
-    width: auto;
-    border-radius: 8px; /* Slightly more rounded for media players */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* More prominent shadow for previews */
     display: block;
     margin: 0.5rem auto; /* Reduced margin */
     background-color: #000; /* Ensures video/audio players are visible */
 }
 
-.searched-other-file {
-    padding: 15px; /* Reduced padding */
-    border: 1px dashed #777;
-    border-radius: 8px;
-    background-color: #3a3a3a;
-    color: #eee;
-    margin-top: 1rem; /* Reduced margin */
-    text-align: center;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
-}
+/* OLD search-result-display is now the container for the list (search-results-list) */
+/* .search-result-display { ... (This style block is effectively replaced by .search-results-list) } */
 
-.searched-other-file p {
-    margin-bottom: 1rem; /* Reduced margin */
-    font-size: 1rem; /* Adjusted font size */
-    font-weight: 500;
-}
+
+/* Existing styles below, modified where necessary for consistency */
 
 .download-link {
     display: inline-block;
@@ -331,6 +336,7 @@ main {
     font-weight: 600;
     transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for subtle animation */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 10px; /* Added margin-top for separation */
 }
 
 .download-link:hover {
@@ -376,9 +382,7 @@ main {
         width: 100%; /* Full width for input and button */
     }
 
-    .searched-image,
-    .searched-video,
-    .searched-audio {
+    .searched-item-preview {
         max-height: 120px; /* Further constrain height on very small screens */
     }
 }
@@ -394,13 +398,11 @@ main {
     .search-container {
         padding: 1.5rem;
     }
-    .search-result-display,
+    .search-results-list, /* Updated from search-result-display */
     .file-dropzone {
         padding: 1rem;
     }
-    .searched-image,
-    .searched-video,
-    .searched-audio {
+    .searched-item-preview {
         max-height: 180px; /* Adjust image/video max height */
     }
 }

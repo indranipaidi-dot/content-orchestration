@@ -52,5 +52,6 @@ env/                   # Covers cases where env might be at project root
 /frontend/node_modules/
 node_modules/ # Covers cases where node_modules might be at project root
 /frontend/env
-
+/backend/my-credentials.json
+/backend/venv_old/
 
